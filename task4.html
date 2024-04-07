@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToDo List </title>
+<link rel="stylesheet" href="task4.css">
+</head>
+<body>
+
+
+
+<div class="container">
+<h1>My To Do List </h1>
+<input type="text" id="taskInput" placeholder="Enter task"><br><br>
+<button id="addtask" onclick=addTask()>Add Task</button>
+<ul id="taskList"></ul>
+</div>
+
+<script>
+var totalTasks = 0; 
+
+function addTask() {
+  var taskInput = document.getElementById("taskInput");
+  var taskList = document.getElementById("taskList");
+  var taskCount = document.getElementById("taskCount");
+  var task = taskInput.value;
+  
+  if (task!== "") {
+    var li = document.createElement("li");
+    li.textContent = task;
+ 
+    var deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.style.backgroundColor="red"
+    deleteButton.style.borderRadius="5px"
+    deleteButton.onclick = function() {
+      taskList.removeChild(li);
+     };
+    li.appendChild(deleteButton);
+    
+    taskList.appendChild(li);
+    taskInput.value = "";
+  
+    var editButton = document.createElement("button");
+    editButton.innerHTML = "Edit";
+    editButton.style.backgroundColor="green";
+    editButton.style.borderRadius="5px"
+    editButton.onclick = function() {
+        var newText = prompt("Edit task:", li.firstChild.nodeValue);
+        if (newText !== null) {
+            li.firstChild.nodeValue = newText;
+        }
+    };
+    li.appendChild(editButton);
+    
+    ul.appendChild(li);
+  }
+}
+
+</script>
+</body>
+</html>
